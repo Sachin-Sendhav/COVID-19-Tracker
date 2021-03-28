@@ -4,6 +4,8 @@ import { MenuItem, FormControl, Select, Card, CardContent } from "@material-ui/c
 import InfoBox from './InfoBox';
 import Map from './Map';
 import Table from './Table';
+import { sortData } from './util';
+import LineGraph from './LineGraph';
 
 
 //https://disease.sh/v3/covid-19/countries
@@ -33,7 +35,8 @@ function App() {
             value: country.countryInfo.iso2,
           }));
 
-          setTableData(data);
+          const sortedData = sortData(data);
+          setTableData(sortedData);
           setCountries(countries);
         });
     };
@@ -84,6 +87,7 @@ function App() {
           <h2>here is a countries table</h2>
           <Table countries={tableData}/>
           <h3>Graph</h3>
+          <LineGraph />
         </CardContent>
       </Card>
 
